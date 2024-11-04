@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,12 +44,12 @@ class User extends Authenticatable{
     }
 
     /**
-     * Get the posts for the user.
+     * Get the post for the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function posts(){
-        return $this->hasMany(Post::class);
+        return $this->hasMany(related: Post::class);
     }
 
     /**
@@ -59,6 +58,6 @@ class User extends Authenticatable{
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comments(){
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(related: Comment::class);
     }
 }
