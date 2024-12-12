@@ -13,6 +13,8 @@ class Comment extends Model{
     //enables factory methods for comment model
     use HasFactory;
 
+    protected $fillable = ['content', 'user_id', 'post_id'];
+
     protected $table = 'comments';
 
     /**

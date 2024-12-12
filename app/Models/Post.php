@@ -13,6 +13,8 @@ class Post extends Model{
     //enables factory methods for post model
     use HasFactory;
 
+    protected $fillable = ['title', 'content', 'user_id'];
+    
     /**
      * Define a relationship to the User model.
      * Indicates that each Post "belongs to" a specific User.
