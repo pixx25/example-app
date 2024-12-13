@@ -18,13 +18,13 @@
             <p>{{ $comment->content }}</p>
             <p><small>- by {{ $comment->user ? $comment->user->name : 'Guest' }}</small></p>
             <!-- Delete button -->
-            @if (auth()->check() && auth()->id() === $comment->user_id)
+            
                 <form action="{{ route('comments.destroy', $comment) }}" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Delete</button>
                 </form>
-            @endif
+            
         </div>
     @endforeach
 @endif

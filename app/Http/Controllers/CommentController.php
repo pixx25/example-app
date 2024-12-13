@@ -89,7 +89,7 @@ class CommentController extends Controller
     {
         // Ensure the logged-in user owns the comment
         if (auth()->id() !== $comment->user_id) {
-            return redirect()->back()->withErrors(['Unauthorized action']);
+            return redirect()->back()->withErrors(['Unauthorised action']);
         }
 
         $comment->delete();
