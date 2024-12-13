@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+
+    protected $fillable = ['post_id', 'author', 'content'];
+
     /**
      * Display a listing of the comments.
      */
@@ -33,17 +36,23 @@ class CommentController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'content' => 'required|string',
+        if (!auth()->check()) {
+            return redirect()->route('posts.show', $post)->withErrors('You must be logged in to post a comment.');
+        }
+
+        $validated = $request->validate([
+            'content' => 'required|string|max:500',
         ]);
 
-        $comment = new Comment($validatedData);
-        $comment->post()->associate($post);
+        $comment = new Comment();
+        $comment->content = $validated['content'];
+        $comment->post_id = $post->id;
+        $comment->user_id = auth()->check() ? auth()->id() : null;
         $comment->save();
 
-        return redirect()->route('comments.index', $post);
+        return redirect()->route('posts.show', $post)->with('success', 'Comment added successfully!');
     }
+
 
     /**
      * Display the specified comment.

@@ -15,8 +15,6 @@ class Comment extends Model{
 
     protected $fillable = ['content', 'user_id', 'post_id'];
 
-    protected $table = 'comments';
-
     /**
      * Define a relationship to the User model.
      * Indicates that each Comment "belongs to" a specific User.
@@ -24,7 +22,7 @@ class Comment extends Model{
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(){
-        return $this->belongsTo(related: User::class);
+        return $this->belongsTo(User::class)->withDefault();
     }
 
     /**

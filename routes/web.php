@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\WelcomeController;
 
-Route::get('/', [PostController::class, 'index'])->name('posts.index');
+Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
-Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
