@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('user')->paginate(6); // Show 6 posts per page
         return view('posts.index', compact('posts'));
     }
 

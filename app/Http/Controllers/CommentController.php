@@ -87,7 +87,13 @@ class CommentController extends Controller
      */
     public function destroy(Post $post, Comment $comment)
     {
+        // Ensure the logged-in user owns the comment
+        if (auth()->id() !== $comment->user_id) {
+            return redirect()->back()->withErrors(['Unauthorized action']);
+        }
+
         $comment->delete();
-        return redirect()->route('comments.index', $post);
+
+        return redirect()->back()->with('success', 'Comment deleted successfully');
     }
 }
