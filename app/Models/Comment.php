@@ -22,7 +22,9 @@ class Comment extends Model{
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(){
-        return $this->belongsTo(User::class)->withDefault();
+        return $this->belongsTo(User::class)->withDefault([
+            'name' => 'Guest',
+        ]);
     }
 
     /**

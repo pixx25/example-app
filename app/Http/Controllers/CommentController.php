@@ -36,10 +36,6 @@ class CommentController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        if (!auth()->check()) {
-            return redirect()->route('posts.show', $post)->withErrors('You must be logged in to post a comment.');
-        }
-
         $validated = $request->validate([
             'content' => 'required|string|max:500',
         ]);

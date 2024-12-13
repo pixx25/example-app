@@ -9,14 +9,14 @@ class MakeUserIdNullableInCommentsTable extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->foreignId('user_id')->nullable()->change();
+            $table->unsignedBigInteger('user_id')->nullable()->change();
         });
     }
 
     public function down()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->foreignId('user_id')->nullable(false)->change();
+            $table->unsignedBigInteger('user_id')->nullable(false)->change();
         });
     }
 }
