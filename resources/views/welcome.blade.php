@@ -95,7 +95,7 @@
     <!-- Main content container -->
     <div class="container">
         <!-- Main heading -->
-        <h1>Welcome to My Blog!</h1>
+        <h1>Welcome to the Blog Posts!</h1>
         <!-- Button to navigate to the list of all posts -->
         <a href="{{ route('posts.index') }}" class="button">View All Posts</a>
     </div>
